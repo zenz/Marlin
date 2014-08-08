@@ -1013,7 +1013,7 @@ void calibrate_print_surface(float z_offset)
            if (probe_z > probe_h) probe_h = probe_z;
            if (probe_z < probe_l) probe_l = probe_z;
            probe_count ++;
-           } while ((probe_z != probe_bed_z) and (probe_count < 21));
+           } while ((probe_z != probe_bed_z) and (probe_count < PROBE_COUNT));
 
 	bed_level[x+3][3-y] = probe_bed_z;
       } else {
@@ -1062,7 +1062,7 @@ float probe_bed(float x, float y)
     probe_count ++;
     //SERIAL_PROTOCOL_F(probe_z,3);
     //SERIAL_ECHO(" ");
-    } while ((probe_z != probe_bed_z) and (probe_count < 21));
+    } while ((probe_z != probe_bed_z) and (probe_count < PROBE_COUNT));
     //SERIAL_ECHOLN("");
   /*
   if (probe_count > 2)
@@ -1616,7 +1616,7 @@ void process_commands()
          if (bed_level_y + endstop_adj[1] > h_endstop) h_endstop = bed_level_y + endstop_adj[1];
          if (bed_level_y + endstop_adj[1] < l_endstop) l_endstop = bed_level_y + endstop_adj[1];
          if (bed_level_z + endstop_adj[2] > h_endstop) h_endstop = bed_level_z + endstop_adj[2];
-         if (bed_level_z + endstop_adj[2] < l_endstop) l_endstop = bed_level_x + endstop_adj[2];
+         if (bed_level_z + endstop_adj[2] < l_endstop) l_endstop = bed_level_z + endstop_adj[2];
 
          if (h_endstop - l_endstop > 3)
             {
